@@ -19,7 +19,7 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Task List</title>
     <style>
       /* EXERCISE 2:  
        Create a CSS class for the task list with a diverse background
@@ -33,7 +33,7 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
       }
 
       li {
-        border: 1px solid pink;
+        border: 1px solid rgb(38, 80, 66);
         font-weight: bold;
       }
 
@@ -58,11 +58,11 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
     <!-- EXERCISE 3
         Create a button "Remove Last Task" to trigger the method "removeLast"
         -->
-    <button onclick="removeLast">Remove Last Task</button>
+    <button onclick="removeLast()">Remove Last Task</button>
 
     <!-- EXERCISE 4
         Create a button "Remove First Task" to trigger the method "removeFirst"-->
-    <button onclick="removeFirst">Remove First Task</button>
+    <button onclick="removeFirst()">Remove First Task</button>
 
     <ul id="myTaskList" class="task-list"></ul>
 
@@ -81,52 +81,64 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
 
     <script>
       /* EXERCISE 5:
-                      Add a new task to the list.
-                      Suggestion:
-                      - Use document.getElementById to get the UL item and the input text
-                      - Use the document.createElement to create the new List Item
-                      - Append the child to the UL
-                  */
+      Add a new task to the list.
+      Suggestion:
+      - Use document.getElementById to get the UL item and the input text
+      - Use the document.createElement to create the new List Item
+      - Append the child to the UL
+      */
+      //This declaration will be usefull for many of the following exercises
+      let getUl = document.getElementById("myTaskList"); //grabbing the Ul
+      let liVar = document.createElement("li"); //creating Li items
 
-      const addLi = function () {
-        let getUl = document.getElementById("myTaskList");
-        let liVar = document.createElement("li");
+      const addNewTask = function () {
+        let inputValue = document.getElementById("newTask").value;
+        liVar.innerText = inputValue;
         getUl.appendChild(liVar);
       };
 
       /* EXERCISE 6:
-                      Create a method "removeLast" which removes the last item from the task list
-                  */
-      const removeLastLi = function () {
-        let getUl = document.getElementById("myTaskList");
-        let liVar = getUl.lastChild;
-        getUl.removeChild(liVar);
+       Create a method "removeLast" which removes the last item from the task list
+       */
+      const removeLast = function () {
+        //getting the Ul, and removing the last child = liVar
+        getUl.lastChild.remove(liVar);
+
+        //Could also be done:
+        // getUl.children[getUl.length - 1].remove
       };
 
       /* EXERCISE 7:
-                      Create a method "removeFirst" which removes the first item from the task list
-                  */
-      const removeFirstLi = function () {
-        let getUl = document.getElementById("myTaskList");
-        let liVar = getUl.firstChild;
-        getUl.removeChild(liVar);
+       Create a method "removeFirst" which removes the first item from the task list
+       */
+      const removeFirst = function () {
+        //getting the Ul, and removing the first child = liVar
+        getUl.firstChild.remove(liVar);
+
+        //Could also be done:
+        // getUl.children[0].remove
       };
 
       /* EXERCISE 8:
-                     Create a method "getTasksAsArray" which returns, and prints to
-                     the console an array containing the tasks as string
-                  */
-      const getTasksAsArray = function () {
-        let tasksStr = document.getElementsByTagName("li"); //grabbing the lists items and saving them
-        return tasksStr;
-      };
-      console.log(getTasksAsArray());
+      Create a method "getTasksAsArray" which returns, and prints to
+      the console an array containing the tasks as string
+      */
+      // const getTasksAsArray = function () {
+      //   let getLis = document.getElementsByTagName("li"); //grabbing the lists items and saving them
+      //   let arrayOfLis = [];
+
+      //   for (i = 0; i < arrayOfLis.length; i++) {
+      //     arrayOfLis.push[i];
+      //   }
+      //   return tasksStr;
+      // };
+      // console.log(getTasksAsArray());
 
       /* EXERCISE 9:
-                     Create a method "changeTaskBackgroundColor" which takes the color from the color 
-                     picker with an onchange event listener ad applies it as background
-                     to every list item
-                  */
+                      Create a method "changeTaskBackgroundColor" which takes the color from the color
+                      picker with an onchange event listener ad applies it as background
+                      to every list item
+                   */
       // What I need?
       // 1st grab the color from colorpick little box
       const changeTaskBackgroundColor = function () {
@@ -138,35 +150,35 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
       /* EXTRA */
 
       /* EXERCISE 10:
-                     Create a method "bubbleSort()" which sort the task list alphabetically 
-                     using the bubble sort algorithm
+                      Create a method "bubbleSort()" which sort the task list alphabetically
+                      using the bubble sort algorithm
 
-                     Use your spare time to beautify your task list via CSS.
+                      Use your spare time to beautify your task list via CSS.
 
-                     Suggestion:
-                     - Break the code into many function for semplicity
-                     - Reuse the functions previously created
-                  */
+                      Suggestion:
+                      - Break the code into many function for semplicity
+                      - Reuse the functions previously created
+                   */
 
-      function bubbleSort(array) {
-        let getLis = document.getElementsByTagName("li"); //grabbing the Li's elements
-        let LiArray = []; //Array to store the getLis  elements
+      // function bubbleSort(array) {
+      //   let getLis = document.getElementsByTagName("li"); //grabbing the Li's elements
+      //   let LiArray = []; //Array to store the getLis  elements
 
-        /* This for loop was copied from: 
-        https://www.codegrepper.com/code-examples/javascript/boble+sorting+javascript */
-        for (let i = 0; i < array.length; i++) {
-          for (let j = 0; j < array.length; j++) {
-            let item = array[j];
+      //   /* This for loop was copied from:
+      //    https://www.codegrepper.com/code-examples/javascript/boble+sorting+javascript */
+      //   for (let i = 0; i < array.length; i++) {
+      //     for (let j = 0; j < array.length; j++) {
+      //       let item = array[j];
 
-            let nextItem = array[j + 1];
-            if (item > nextItem) {
-              array[j] = nextItem;
-              array[j + 1] = item;
-            }
-          }
-        }
-        return array;
-      }
+      //       let nextItem = array[j + 1];
+      //       if (item > nextItem) {
+      //         array[j] = nextItem;
+      //         array[j + 1] = item;
+      //       }
+      //     }
+      //   }
+      //   return array;
+      // }
     </script>
   </body>
 </html>
